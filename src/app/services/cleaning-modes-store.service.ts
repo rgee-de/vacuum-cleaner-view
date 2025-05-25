@@ -1,7 +1,6 @@
 import {inject, Injectable, signal} from '@angular/core';
 import {CleaningModesModel, defaultCleaningModes} from '../models/cleaning-modes.model';
 import {HttpClient} from '@angular/common/http';
-import {RoomModel} from '../models/room.model';
 import {environment} from '../../environments/environment';
 
 @Injectable({

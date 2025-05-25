@@ -6,9 +6,12 @@ import {RoomStoreService} from './services/room-store.service';
 import {provideHttpClient} from '@angular/common/http';
 import {provideAnimationsAsync} from '@angular/platform-browser/animations/async';
 import {providePrimeNG} from 'primeng/config';
-import Lara from '@primeng/themes/lara';
 import {CleaningModesStoreService} from './services/cleaning-modes-store.service';
 import {PropertiesStoreService} from './services/properties-store.service';
+import {CommandsService} from './services/commands.service';
+import LaraDarkTeal from './lara-dark-teal.preset';
+
+document.documentElement.classList.add('app-dark');
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -18,6 +21,7 @@ export const appConfig: ApplicationConfig = {
     RoomStoreService,
     CleaningModesStoreService,
     PropertiesStoreService,
+    CommandsService,
 
     provideAppInitializer(() => inject(RoomStoreService).load()),
     provideAppInitializer(() => inject(CleaningModesStoreService).load()),
@@ -26,7 +30,10 @@ export const appConfig: ApplicationConfig = {
     provideAnimationsAsync(),
     providePrimeNG({
       theme: {
-        preset: Lara
+        preset: LaraDarkTeal,
+        options: {
+          darkModeSelector: '.app-dark'
+        }
       }
     })
   ]

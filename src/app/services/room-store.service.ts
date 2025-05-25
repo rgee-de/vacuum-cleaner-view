@@ -1,4 +1,4 @@
-import {computed, effect, inject, Injectable, signal} from '@angular/core';
+import {computed, inject, Injectable, signal} from '@angular/core';
 import {RoomModel} from '../models/room.model';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../environments/environment';

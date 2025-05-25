@@ -1,4 +1,4 @@
-import { TestBed } from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
 
 import {CleaningModesStoreService} from './cleaning-modes-store.service';
 

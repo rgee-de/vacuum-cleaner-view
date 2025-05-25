@@ -1,4 +1,3 @@
-
 export interface ModeSettings {
   fan_power: number[];
   water_box_mode: number[];
@@ -10,6 +9,7 @@ export interface CleaningModesModel {
   Mop: ModeSettings;
   "Vac&Mop": ModeSettings;
   Custom: ModeSettings;
+
   [extraMode: string]: ModeSettings;
 }
 

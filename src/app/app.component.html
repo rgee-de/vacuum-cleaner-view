@@ -1,12 +1,24 @@
+<div class="grid surface-ground full-height">
+  <div class="col-6">
+    <p-button (click)="stop()" [outlined]="true" [severity]="'help'" label="Stop"/>
+  </div>
+  <div class="col-6">
+    <p-button (click)="pause()" [outlined]="true" [severity]="'help'" label="Pause"/>
+  </div>
+  <div class="col-6">
+    <p-button (click)="charge()" [outlined]="true" [severity]="'help'" label="Charge"/>
+  </div>
+  <div class="col-6">
+    <p-button (click)="service()" [outlined]="true" [severity]="'help'" label="Service"/>
+  </div>
 
+  <div class="col-12 mt-1"></div>
 
-
-<ul>
-  <li *ngFor="let room of rooms()">{{ room.name }}</li>
-</ul>
-
-<div class="card flex justify-center">
-  <p-button label="Check" />
+  <ng-container *ngFor="let room of rooms()">
+    <div *ngIf="room.name !== 'Beccy'" class="col-6">
+      <p-button (click)="clean(room)" [outlined]="true" [severity]="'primary'" label="{{room.name}}"/>
+    </div>
+  </ng-container>
 </div>
 
-<router-outlet />
+<!--<router-outlet />-->
