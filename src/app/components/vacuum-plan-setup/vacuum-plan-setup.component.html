@@ -1,0 +1,124 @@
+<div class="container">
+  <h2>Vacuum Plans</h2>
+
+  <!-- Create New Plan Form -->
+  <div class="form-section">
+    <h3>Create New Plan</h3>
+    <form (ngSubmit)="onAddPlan()">
+      <div>
+        <label for="newPlanName">Plan Name:</label>
+        <input type="text" id="newPlanName" [(ngModel)]="newPlan.name" name="newPlanName" required>
+      </div>
+      <div>
+        <label for="newPlanCycles">Cycles:</label>
+        <input type="number" id="newPlanCycles" [(ngModel)]="newPlan.cycles" name="newPlanCycles" min="1" required>
+      </div>
+      <div>
+        <label for="newPlanRoomIds">Room IDs (comma-separated):</label>
+        <input type="text" id="newPlanRoomIds" [ngModel]="newPlan.roomIds.join(', ')" (ngModelChange)="onRoomIdsChange($event, 'newPlan')" name="newPlanRoomIds" required>
+        <small>Available rooms:
+          @for (room of rooms(); track room.id) {
+            <span>{{ room.name }} ({{ room.id }})</span>
+          }
+        </small>
+      </div>
+      <fieldset>
+        <legend>Settings</legend>
+        <div>
+          <label for="newPlanFanPower">Fan Power (e.g., 60-100):</label>
+          <input type="number" id="newPlanFanPower" [(ngModel)]="newPlan.settings.fan_power" name="newPlanFanPower" required>
+        </div>
+        <div>
+          <label for="newPlanWaterBoxMode">Water Box Mode (e.g., 200-203):</label>
+          <input type="number" id="newPlanWaterBoxMode" [(ngModel)]="newPlan.settings.water_box_mode" name="newPlanWaterBoxMode" required>
+        </div>
+        <div>
+          <label for="newPlanMopMode">Mop Mode (e.g., 300-303):</label>
+          <input type="number" id="newPlanMopMode" [(ngModel)]="newPlan.settings.mop_mode" name="newPlanMopMode" required>
+        </div>
+      </fieldset>
+      <button type="submit">Create Plan</button>
+    </form>
+  </div>
+
+  <!-- Edit Plan Form (Conditional) -->
+  @if (editingPlan) {
+    <div class="form-section edit-form-section">
+      <h3>Edit Plan: {{ editingPlan.name }}</h3>
+      <form (ngSubmit)="onUpdatePlan()">
+        <div>
+          <label for="editPlanName">Plan Name:</label>
+          <input type="text" id="editPlanName" [(ngModel)]="editingPlan.name" name="editPlanName" required>
+        </div>
+        <div>
+          <label for="editPlanCycles">Cycles:</label>
+          <input type="number" id="editPlanCycles" [(ngModel)]="editingPlan.cycles" name="editPlanCycles" min="1" required>
+        </div>
+        <div>
+          <label for="editPlanRoomIds">Room IDs (comma-separated):</label>
+          <input type="text" id="editPlanRoomIds" [ngModel]="editingPlan.roomIds.join(', ')" (ngModelChange)="onRoomIdsChange($event, 'editingPlan')" name="editPlanRoomIds" required>
+          <small>Available rooms:
+            @for (room of rooms(); track room.id) {
+              <span>{{ room.name }} ({{ room.id }})</span>
+            }
+          </small>
+        </div>
+        <fieldset>
+          <legend>Settings</legend>
+          <div>
+            <label for="editPlanFanPower">Fan Power:</label>
+            <input type="number" id="editPlanFanPower" [(ngModel)]="editingPlan.settings.fan_power" name="editPlanFanPower" required>
+          </div>
+          <div>
+            <label for="editPlanWaterBoxMode">Water Box Mode:</label>
+            <input type="number" id="editPlanWaterBoxMode" [(ngModel)]="editingPlan.settings.water_box_mode" name="editPlanWaterBoxMode" required>
+          </div>
+          <div>
+            <label for="editPlanMopMode">Mop Mode:</label>
+            <input type="number" id="editPlanMopMode" [(ngModel)]="editingPlan.settings.mop_mode" name="editPlanMopMode" required>
+          </div>
+        </fieldset>
+        <button type="submit">Update Plan</button>
+        <button type="button" (click)="cancelEdit()">Cancel</button>
+      </form>
+    </div>
+  }
+
+  <!-- Display Existing Plans -->
+  <div class="list-section">
+    <h3>Existing Plans</h3>
+    @if (plans().length === 0) {
+      <p>No plans created yet.</p>
+    } @else {
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Cycles</th>
+            <th>Rooms</th>
+            <th>Fan Power</th>
+            <th>Water Mode</th>
+            <th>Mop Mode</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (plan of plans(); track plan.id) {
+            <tr>
+              <td>{{ plan.name }}</td>
+              <td>{{ plan.cycles }}</td>
+              <td>{{ getRoomNames(plan.roomIds) }}</td>
+              <td>{{ plan.settings.fan_power }}</td>
+              <td>{{ plan.settings.water_box_mode }}</td>
+              <td>{{ plan.settings.mop_mode }}</td>
+              <td>
+                <button (click)="onSelectEditPlan(plan)">Edit</button>
+                <button (click)="onDeletePlan(plan.id)">Delete</button>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    }
+  </div>
+</div>

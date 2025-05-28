@@ -1,4 +1,5 @@
 import {Component, inject} from '@angular/core';
+import {RouterLink, RouterOutlet} from '@angular/router';
 import {RoomStoreService} from './services/room-store.service';
 import {NgForOf, NgIf} from '@angular/common';
 import {ButtonModule} from 'primeng/button';
@@ -7,7 +8,7 @@ import {RoomModel} from './models/room.model';
 
 @Component({
   selector: 'app-root',
-  imports: [NgForOf, ButtonModule, NgIf],
+  imports: [NgForOf, ButtonModule, NgIf, RouterOutlet, RouterLink],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

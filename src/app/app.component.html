@@ -19,6 +19,14 @@
       <p-button (click)="clean(room)" [outlined]="true" [severity]="'primary'" label="{{room.name}}"/>
     </div>
   </ng-container>
+
+  <div class="col-12 mt-1"></div>
+  <div class="col-12">
+    <a routerLink="/vacuum-plans" style="text-decoration: none;">
+      <p-button label="Vacuum Plans Setup" styleClass="p-button-secondary p-button-outlined" icon="pi pi-cog"></p-button>
+    </a>
+  </div>
+
 </div>
 
-<!--<router-outlet />-->
+<router-outlet />
