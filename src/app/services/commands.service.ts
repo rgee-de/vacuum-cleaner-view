@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {environment} from '../../environments/environment';
 import {CleaningModesStoreService} from './cleaning-modes-store.service';
 import {switchMap} from 'rxjs';
+import { VacuumPlanModel } from '../models/vacuum-plan.model';
 
 @Injectable({
   providedIn: 'root'
@@ -40,6 +41,22 @@ export class CommandsService {
     }).pipe(
       switchMap(() =>
         this.http.post(environment.apiEndpoint + 'clean/segments', {segment_ids, repeat})
+      )
+    );
+  }
+
+  executeVacuumPlan(plan: VacuumPlanModel) {
+    return this.http.post(environment.apiEndpoint + 'clean/settings', {
+      mode: 'Custom', // Assuming 'Custom' mode for specific settings
+      fan_power: plan.settings.fan_power,
+      water_box_mode: plan.settings.water_box_mode,
+      mop_mode: plan.settings.mop_mode
+    }).pipe(
+      switchMap(() =>
+        this.http.post(environment.apiEndpoint + 'clean/segments', {
+          segment_ids: plan.roomIds,
+          repeat: plan.cycles
+        })
       )
     );
   }
