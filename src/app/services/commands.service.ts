@@ -28,7 +28,7 @@ export class CommandsService {
     return this.http.post<any>(environment.apiEndpoint + 'pause', {});
   }
 
-  cleanSegmentsCustom(segment_ids: [number], repeat: number = 1) {
+  cleanSegmentsCustom(segment_ids: number[], repeat: number = 1) {
     const modeName = 'Custom' as const;
     const modes = this._cleaningModes();
 

@@ -4,6 +4,7 @@ import {NgForOf, NgIf} from '@angular/common';
 import {ButtonModule} from 'primeng/button';
 import {CommandsService} from './services/commands.service';
 import {RoomModel} from './models/room.model';
+import {SelectedRoomStoreService} from './services/selected-room-store.service';
 
 @Component({
   selector: 'app-root',
@@ -17,6 +18,7 @@ export class AppComponent {
   private readonly roomStore = inject(RoomStoreService);
   readonly rooms = this.roomStore.rooms;
   private readonly commandsService = inject(CommandsService);
+  protected readonly selectedRoomStore = inject(SelectedRoomStoreService);
 
   stop() {
     this.commandsService.stop().subscribe()
@@ -34,7 +36,13 @@ export class AppComponent {
     this.commandsService.gotoMaintenancePoint().subscribe()
   }
 
-  clean(room: RoomModel) {
-    this.commandsService.cleanSegmentsCustom([room.segment_id]).subscribe()
+  clean() {
+    const segmentIds = this.selectedRoomStore.selectedIds();
+    this.commandsService.cleanSegmentsCustom(segmentIds).subscribe();
+    this.selectedRoomStore.clear();
+  }
+
+  select(room: RoomModel) {
+    this.selectedRoomStore.toggle(room.segment_id);
   }
 }
