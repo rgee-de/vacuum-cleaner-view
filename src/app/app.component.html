@@ -14,10 +14,18 @@
 
   <div class="col-12 mt-1"></div>
 
+  <div class="col-6 mt-2">
+    <app-repetitions-selector></app-repetitions-selector>
+  </div>
+
+  <div class="col-12 mt-1"></div>
+
+
   <ng-container *ngFor="let room of rooms()">
     <div *ngIf="room.name !== 'Beccy'" class="col-6">
       <p-button (click)="select(room)" [outlined]="true"
-                [severity]="selectedRoomStore.isSelected(room.segment_id) ? 'info' : 'primary'" label="{{room.name}}"/>
+                [severity]="selectedRoomStore.isSelected(room.segment_id) ? 'info' : 'secondary'"
+                label="{{room.name}}"/>
     </div>
   </ng-container>
 

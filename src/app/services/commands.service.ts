@@ -3,12 +3,14 @@ import {HttpClient} from '@angular/common/http';
 import {environment} from '../../environments/environment';
 import {CleaningModesStoreService} from './cleaning-modes-store.service';
 import {switchMap} from 'rxjs';
+import {RepeatStoreService} from './repeat-store.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CommandsService {
   private readonly http = inject(HttpClient);
+  private readonly repeatStore = inject(RepeatStoreService);
   private readonly cleaningModesStore = inject(CleaningModesStoreService);
   private readonly _cleaningModes = this.cleaningModesStore.modes
 
@@ -28,7 +30,7 @@ export class CommandsService {
     return this.http.post<any>(environment.apiEndpoint + 'pause', {});
   }
 
-  cleanSegmentsCustom(segment_ids: number[], repeat: number = 1) {
+  cleanSegmentsCustom(segment_ids: number[]) {
     const modeName = 'Custom' as const;
     const modes = this._cleaningModes();
 
@@ -39,7 +41,10 @@ export class CommandsService {
       mop_mode: modes[modeName].mop_mode[0]
     }).pipe(
       switchMap(() =>
-        this.http.post(environment.apiEndpoint + 'clean/segments', {segment_ids, repeat})
+        this.http.post(environment.apiEndpoint + 'clean/segments', {
+          segment_ids,
+          repeat: this.repeatStore.numberOfRepetition()
+        })
       )
     );
   }
