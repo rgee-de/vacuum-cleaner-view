@@ -33,14 +33,14 @@ export class CleaningModesStoreService {
     },
     {
       name: 'Intensive Mop',
-      mode: 'Vac',
+      mode: 'Mop',
       fan_power: 105,
       water_box_mode: 202,
       mop_mode: 303,
     },
     {
       name: 'Vac & Mop',
-      mode: 'Vac',
+      mode: 'Vac&Mop',
       fan_power: 104,
       water_box_mode: 202,
       mop_mode: 300,
