@@ -13,6 +13,17 @@ export interface CleaningModesModel {
   [extraMode: string]: ModeSettings;
 }
 
+export interface CleaningConfig {
+  mode: keyof CleaningModesModel;
+  fan_power: number;
+  water_box_mode: number;
+  mop_mode: number;
+}
+
+export interface CleaningPreset extends CleaningConfig {
+  name: string;
+}
+
 export const defaultCleaningModes = {
   Vac: {
     fan_power: [0],

@@ -12,7 +12,6 @@ export class CommandsService {
   private readonly http = inject(HttpClient);
   private readonly repeatStore = inject(RepeatStoreService);
   private readonly cleaningModesStore = inject(CleaningModesStoreService);
-  private readonly _cleaningModes = this.cleaningModesStore.modes
 
   gotoMaintenancePoint() {
     return this.http.post<any>(environment.apiEndpoint + 'goto/maintenance', {});
@@ -30,16 +29,12 @@ export class CommandsService {
     return this.http.post<any>(environment.apiEndpoint + 'pause', {});
   }
 
-  cleanSegmentsCustom(segment_ids: number[]) {
-    const modeName = 'Custom' as const;
-    const modes = this._cleaningModes();
+  setMode() {
+    return this.http.post(environment.apiEndpoint + 'clean/settings', this.cleaningModesStore.currentSelectedConfig());
+  }
 
-    return this.http.post(environment.apiEndpoint + 'clean/settings', {
-      mode: modeName,
-      fan_power: modes[modeName].fan_power[0],
-      water_box_mode: modes[modeName].water_box_mode[0],
-      mop_mode: modes[modeName].mop_mode[0]
-    }).pipe(
+  cleanSegmentsCustom(segment_ids: number[]) {
+    return this.http.post(environment.apiEndpoint + 'clean/settings', this.cleaningModesStore.currentSelectedConfig()).pipe(
       switchMap(() =>
         this.http.post(environment.apiEndpoint + 'clean/segments', {
           segment_ids,

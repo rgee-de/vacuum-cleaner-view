@@ -1,0 +1,27 @@
+<p-dialog
+  [(visible)]="visible"
+  [closable]="false"
+  [dismissableMask]="true"
+  [modal]="true"
+  [position]="'top'"
+  [style]="{ width: '300px' }"
+>
+  <div class="grid">
+    <div *ngFor="let presetName of cleaningModeStore.availablePresetNames" class="col-12">
+      <p-button
+        (click)="select(presetName)"
+        [label]="presetName"
+        [outlined]="true"
+        [severity]="cleaningModeStore.selectedPresetName() === presetName ? 'info' : 'secondary'"
+      ></p-button>
+    </div>
+
+  </div>
+</p-dialog>
+
+<p-button
+  (click)="open()"
+  [label]="cleaningModeStore.selectedPresetName()"
+  [outlined]="true"
+  [severity]="'primary'"
+></p-button>

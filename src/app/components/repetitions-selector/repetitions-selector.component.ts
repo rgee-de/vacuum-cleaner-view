@@ -1,4 +1,4 @@
-import {Component, signal} from '@angular/core';
+import {Component, inject, signal} from '@angular/core';
 import {RepeatStoreService} from '../../services/repeat-store.service';
 import {Button} from 'primeng/button';
 import {Dialog} from 'primeng/dialog';
@@ -17,8 +17,7 @@ import {NgForOf} from '@angular/common';
 export class RepetitionsSelectorComponent {
   visible = signal(false)
 
-  constructor(protected repeatStore: RepeatStoreService) {
-  }
+  protected readonly repeatStore = inject(RepeatStoreService);
 
   open(): void {
     this.visible.set(true);
