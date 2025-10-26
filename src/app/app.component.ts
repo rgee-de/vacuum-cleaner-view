@@ -5,10 +5,11 @@ import {ButtonModule} from 'primeng/button';
 import {CommandsService} from './services/commands.service';
 import {RoomModel} from './models/room.model';
 import {SelectedRoomStoreService} from './services/selected-room-store.service';
+import {RepetitionsSelectorComponent} from './components/repetitions-selector/repetitions-selector.component';
 
 @Component({
   selector: 'app-root',
-  imports: [NgForOf, ButtonModule, NgIf],
+  imports: [NgForOf, ButtonModule, NgIf, RepetitionsSelectorComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
