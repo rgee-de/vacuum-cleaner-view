@@ -6,7 +6,7 @@ import {computed, Injectable, signal} from '@angular/core';
 export class SelectedRoomStoreService {
   private readonly _selectedIds = signal<Set<number>>(new Set())
 
-  readonly selectedIds = computed<number[]>(() => Array.from(this._selectedIds()).sort((a,b) => a - b));
+  readonly selectedIds = computed<number[]>(() => Array.from(this._selectedIds()).sort((a, b) => a - b));
 
   readonly hasSelection = computed(() => this._selectedIds().size > 0);
 
@@ -15,7 +15,7 @@ export class SelectedRoomStoreService {
   }
 
   select(segment_id: number) {
-    if(this.isSelected(segment_id)) return;
+    if (this.isSelected(segment_id)) return;
 
     const next = new Set(this._selectedIds());
     next.add(segment_id);

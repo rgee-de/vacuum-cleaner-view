@@ -22,7 +22,8 @@
   </ng-container>
 
   <div class="col-12">
-    <p-button (click)="clean()" [outlined]="true" [severity]="'warn'" label="Start" [disabled]="!selectedRoomStore.hasSelection()" />
+    <p-button (click)="clean()" [disabled]="!selectedRoomStore.hasSelection()" [outlined]="true" [severity]="'warn'"
+              label="Start"/>
   </div>
 </div>
 

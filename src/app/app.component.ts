@@ -14,11 +14,10 @@ import {SelectedRoomStoreService} from './services/selected-room-store.service';
 })
 export class AppComponent {
   title = 'vacuum-cleaner-view';
-
+  protected readonly selectedRoomStore = inject(SelectedRoomStoreService);
   private readonly roomStore = inject(RoomStoreService);
   readonly rooms = this.roomStore.rooms;
   private readonly commandsService = inject(CommandsService);
-  protected readonly selectedRoomStore = inject(SelectedRoomStoreService);
 
   stop() {
     this.commandsService.stop().subscribe()
