@@ -3,5 +3,6 @@ services:
     image: rgee/vacuum-cleaner-view:arm64-latest
     container_name: vacuum-cleaner-view
     restart: unless-stopped
+    pull_policy: always
     ports:
       - "5010:80"
