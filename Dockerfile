@@ -29,14 +29,6 @@ RUN apk add --no-cache brotli gzip
 # Copy built files from builder stage
 COPY --from=builder /app/dist/vacuum-cleaner-view/browser /usr/share/nginx/html
 
-# Create Brotli + Gzip in advance (saves CPU at runtime)
-# Precompress BSP (Brotli & Gzip)
-RUN find /usr/share/nginx/html \
-    -type f \
-    \( -name "*.js" -o -name "*.css" -o -name "*.html" \) \
-    -exec gzip -9 -k {} \; \
-    -exec brotli --force --quality=11 {} \;
-
 # Copy custom Nginx configuration (optional)
 COPY nginx.conf /etc/nginx/nginx.conf
 
