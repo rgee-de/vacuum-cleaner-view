@@ -1,0 +1,7 @@
+services:
+  vacuum-cleaner-view:
+    image: rgee/vacuum-cleaner-view:arm64-latest
+    container_name: vacuum-cleaner-view
+    restart: unless-stopped
+    ports:
+      - "5010:80"

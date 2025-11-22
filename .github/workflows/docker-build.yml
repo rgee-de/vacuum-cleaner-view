@@ -1,4 +1,4 @@
-name: Build and Push ARMv7 Docker Image
+name: Build and Push ARM64 Docker Image (Angular Webview)
 
 on:
   push:
@@ -26,10 +26,10 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Build and push Docker image for ARMv7
+      - name: Build and push ARM64 image
         uses: docker/build-push-action@v5
         with:
           context: .
           push: true
-          platforms: linux/arm/v7
-          tags: rgee/vacuum-cleaner-view:arm7-latest
+          platforms: linux/arm64
+          tags: rgee/vacuum-cleaner-view:arm64-latest
