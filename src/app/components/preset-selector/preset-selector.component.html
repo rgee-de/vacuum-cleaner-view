@@ -10,6 +10,8 @@
     <div *ngFor="let presetName of cleaningModeStore.availablePresetNames" class="col-12">
       <p-button
         (click)="select(presetName)"
+        (keydown.enter)="select(presetName)"
+        (keydown.space)="select(presetName)"
         [label]="presetName"
         [outlined]="true"
         [severity]="cleaningModeStore.selectedPresetName() === presetName ? 'info' : 'secondary'"
@@ -21,6 +23,8 @@
 
 <p-button
   (click)="open()"
+  (keydown.enter)="open()"
+  (keydown.space)="open()"
   [label]="cleaningModeStore.selectedPresetName()"
   [outlined]="true"
   [severity]="'primary'"

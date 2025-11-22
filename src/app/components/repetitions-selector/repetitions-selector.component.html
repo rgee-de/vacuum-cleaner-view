@@ -10,6 +10,8 @@
     <div *ngFor="let rep of [1, 2, 3]" class="col-12">
       <p-button
         (click)="select(rep)"
+        (keydown.enter)="select(rep)"
+        (keydown.space)="select(rep)"
         [label]="rep + 'x'"
         [outlined]="true"
         [severity]="repeatStore.numberOfRepetition() === rep ? 'info' : 'secondary'"
@@ -21,6 +23,8 @@
 
 <p-button
   (click)="open()"
+  (keydown.enter)="open()"
+  (keydown.space)="open()"
   [label]="repeatStore.numberOfRepetition() + 'x'"
   [outlined]="true"
   [severity]="'primary'"

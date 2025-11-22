@@ -1,15 +1,27 @@
 <div class="grid surface-ground full-height">
   <div class="col-6">
-    <p-button (click)="stop()" [outlined]="true" [severity]="'help'" label="Stop"/>
+    <p-button (click)="stop()"
+              (keydown.enter)="stop()"
+              (keydown.space)="stop()"
+              [outlined]="true" [severity]="'help'" label="Stop"/>
   </div>
   <div class="col-6">
-    <p-button (click)="pause()" [outlined]="true" [severity]="'help'" label="Pause"/>
+    <p-button (click)="pause()"
+              (keydown.enter)="pause()"
+              (keydown.space)="pause()"
+              [outlined]="true" [severity]="'help'" label="Pause"/>
   </div>
   <div class="col-6">
-    <p-button (click)="charge()" [outlined]="true" [severity]="'help'" label="Charge"/>
+    <p-button (click)="charge()"
+              (keydown.enter)="charge()"
+              (keydown.space)="charge()"
+              [outlined]="true" [severity]="'help'" label="Charge"/>
   </div>
   <div class="col-6">
-    <p-button (click)="service()" [outlined]="true" [severity]="'help'" label="Service"/>
+    <p-button (click)="service()"
+              (keydown.enter)="service()"
+              (keydown.space)="service()"
+              [outlined]="true" [severity]="'help'" label="Service"/>
   </div>
 
   <div class="col-12 mt-1"></div>
@@ -26,16 +38,20 @@
 
   <ng-container *ngFor="let room of rooms()">
     <div *ngIf="room.name !== 'Beccy'" class="col-6">
-      <p-button (click)="select(room)" [outlined]="true"
+      <p-button (click)="select(room)"
+                (keydown.enter)="select(room)"
+                (keydown.space)="select(room)"
+                [outlined]="true"
                 [severity]="selectedRoomStore.isSelected(room.segment_id) ? 'info' : 'secondary'"
                 label="{{room.name}}"/>
     </div>
   </ng-container>
 
   <div class="col-12">
-    <p-button (click)="clean()" [disabled]="!selectedRoomStore.hasSelection()" [outlined]="true" [severity]="'warn'"
+    <p-button (click)="clean()"
+              (keydown.enter)="clean()"
+              (keydown.space)="clean()"
+              [disabled]="!selectedRoomStore.hasSelection()" [outlined]="true" [severity]="'warn'"
               label="Start"/>
   </div>
 </div>
-
-<!--<router-outlet />-->

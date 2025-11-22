@@ -21,7 +21,7 @@ export class RepeatStoreService {
 
   private _loadFromStorage(): number {
     const stored = localStorage.getItem(STORAGE_KEY);
-    const parsed = stored ? parseInt(stored, 10) : NaN;
+    const parsed = stored ? Number.parseInt(stored, 10) : Number.NaN;
     return [1, 2, 3].includes(parsed) ? parsed : 1;
   }
 }
