@@ -18,7 +18,7 @@ COPY . .
 
 # Build the Angular application
 ENV NODE_ENV=production
-RUN npm run build -- --configuration production --build-optimizer --optimization
+RUN npm run build
 
 # Stage 2: Serve the Angular application with Nginx
 FROM nginx:stable-alpine AS runtime
