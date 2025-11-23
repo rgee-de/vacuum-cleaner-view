@@ -7,16 +7,18 @@
   [style]="{ width: '300px' }"
 >
   <div class="grid">
-    <div *ngFor="let presetName of cleaningModeStore.availablePresetNames" class="col-12">
-      <p-button
-        (click)="select(presetName)"
-        (keydown.enter)="select(presetName)"
-        (keydown.space)="select(presetName)"
-        [label]="presetName"
-        [outlined]="true"
-        [severity]="cleaningModeStore.selectedPresetName() === presetName ? 'info' : 'secondary'"
-      ></p-button>
-    </div>
+    @for (presetName of cleaningModeStore.availablePresetNames; track presetName) {
+      <div class="col-12">
+        <p-button
+          (click)="select(presetName)"
+          (keydown.enter)="select(presetName)"
+          (keydown.space)="select(presetName)"
+          [label]="presetName"
+          [outlined]="true"
+          [severity]="cleaningModeStore.selectedPresetName() === presetName ? 'info' : 'secondary'"
+        ></p-button>
+      </div>
+    }
 
   </div>
 </p-dialog>

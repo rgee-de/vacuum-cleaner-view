@@ -2,15 +2,14 @@ import {Component, inject, signal} from '@angular/core';
 import {CleaningModesStoreService} from '../../services/cleaning-modes-store.service';
 import {Button} from 'primeng/button';
 import {Dialog} from 'primeng/dialog';
-import {NgForOf} from '@angular/common';
+
 import {CommandsService} from '../../services/commands.service';
 
 @Component({
   selector: 'app-preset-selector',
   imports: [
     Button,
-    Dialog,
-    NgForOf
+    Dialog
   ],
   templateUrl: './preset-selector.component.html',
   styleUrl: './preset-selector.component.css'

@@ -36,16 +36,18 @@
   <div class="col-12 mt-1"></div>
 
 
-  <ng-container *ngFor="let room of rooms()">
-    <div *ngIf="room.name !== 'Beccy'" class="col-6">
-      <p-button (click)="select(room)"
-                (keydown.enter)="select(room)"
-                (keydown.space)="select(room)"
-                [outlined]="true"
-                [severity]="selectedRoomStore.isSelected(room.segment_id) ? 'info' : 'secondary'"
-                label="{{room.name}}"/>
-    </div>
-  </ng-container>
+  @for (room of rooms(); track room) {
+    @if (room.name !== 'Beccy') {
+      <div class="col-6">
+        <p-button (click)="select(room)"
+                  (keydown.enter)="select(room)"
+                  (keydown.space)="select(room)"
+                  [outlined]="true"
+                  [severity]="selectedRoomStore.isSelected(room.segment_id) ? 'info' : 'secondary'"
+                  label="{{room.name}}"/>
+      </div>
+    }
+  }
 
   <div class="col-12">
     <p-button (click)="clean()"

@@ -1,6 +1,6 @@
 import {Component, inject} from '@angular/core';
 import {RoomStoreService} from './services/room-store.service';
-import {NgForOf, NgIf} from '@angular/common';
+
 import {ButtonModule} from 'primeng/button';
 import {CommandsService} from './services/commands.service';
 import {RoomModel} from './models/room.model';
@@ -10,7 +10,7 @@ import {PresetSelectorComponent} from './components/preset-selector/preset-selec
 
 @Component({
   selector: 'app-root',
-  imports: [NgForOf, ButtonModule, NgIf, RepetitionsSelectorComponent, PresetSelectorComponent],
+  imports: [ButtonModule, RepetitionsSelectorComponent, PresetSelectorComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
