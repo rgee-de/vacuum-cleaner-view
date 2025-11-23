@@ -13,22 +13,22 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@11bd719366c4c615ad0d6819db0352d1715cc31a  # v4.2.0
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5  # v4.3.1
 
       - name: Setup QEMU
-        uses: docker/setup-qemu-action@97ffb9bff4efd75940917c8125dc8ae2c56f4c7d  # v3.2.0
+        uses: docker/setup-qemu-action@c7c53464625b32c7a7e944ae62b3e17d2b600130  # v3.7.0
 
       - name: Setup Docker Buildx
-        uses: docker/setup-buildx-action@60773f17706dbebf33a9f9eee6251b6f1bbba60a  # v3.3.0
+        uses: docker/setup-buildx-action@e468171a9de216ec08956ac3ada2f0791b6bd435  # v3.11.1
 
       - name: Login to Docker Hub
-        uses: docker/login-action@aaf152f7134c0d4ebcf358967b1a884270181c71  # v3.2.0
+        uses: docker/login-action@5e57cd118135c172c3672efd75eb46360885c0ef  # v3.6.0
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Build and push ARM64 image
-        uses: docker/build-push-action@4fe1110c69acb95ba218414c52b51624754d0eb1  # v5.1.0
+        uses: docker/build-push-action@263435318d21b8e681c14492fe198d362a7d2c83  # v6.18.0
         with:
           context: .
           push: true
