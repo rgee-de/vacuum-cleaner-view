@@ -28,13 +28,9 @@ RUN npm run build
 # Stage 2: Serve the Angular application with Nginx
 FROM nginx:stable-alpine AS runtime
 
-FROM nginx:stable-alpine AS runtime
-
-# Install gzip only if needed
 # Create non-root user for Nginx
 # Prepare directory for Angular static files
-RUN apk add --no-cache gzip \
-    && adduser -D -g '' nginxuser \
+RUN adduser -D -g '' nginxuser \
     && mkdir -p /usr/share/nginx/html \
     && chown -R nginxuser:nginxuser /usr/share/nginx/html
 
