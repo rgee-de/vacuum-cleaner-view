@@ -10,8 +10,7 @@ import {Dialog} from 'primeng/dialog';
     Button,
     Dialog
   ],
-  templateUrl: './repetitions-selector.component.html',
-  styleUrl: './repetitions-selector.component.css'
+  templateUrl: './repetitions-selector.component.html'
 })
 export class RepetitionsSelectorComponent {
   visible = signal(false)

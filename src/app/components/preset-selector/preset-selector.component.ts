@@ -11,8 +11,7 @@ import {CommandsService} from '../../services/commands.service';
     Button,
     Dialog
   ],
-  templateUrl: './preset-selector.component.html',
-  styleUrl: './preset-selector.component.css'
+  templateUrl: './preset-selector.component.html'
 })
 export class PresetSelectorComponent {
   visible = signal(false)
