@@ -1,10 +1,11 @@
+#file: noinspection UndefinedAction,UndefinedParamsPresent
 name: Build and Push ARM64 Docker Image (Angular Webview)
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
   pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
 
 jobs:
   build:
@@ -12,22 +13,22 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@b4ff0f8464d12d66b6c59bc59435c41278842477  # v4.1.1
 
       - name: Setup QEMU
-        uses: docker/setup-qemu-action@v3
+        uses: docker/setup-qemu-action@e81abce7d5cdbf286f8bf8033ffe6961f26e19f9  # v3.2.0
 
       - name: Setup Docker Buildx
-        uses: docker/setup-buildx-action@v3
+        uses: docker/setup-buildx-action@4cd7af556faf297a1914b4b9fe640f92daecf389  # v3.3.0
 
       - name: Login to Docker Hub
-        uses: docker/login-action@v3
+        uses: docker/login-action@7db09374fa40bbdcf1da2b66d60a5ca000c2cb35  # v3.2.0
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Build and push ARM64 image
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@f2f88ea72c220ad4d8fe39760c19a5da22dc0d7d  # v5.1.0
         with:
           context: .
           push: true
