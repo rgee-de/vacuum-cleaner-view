@@ -14,9 +14,8 @@ COPY package.json package-lock.json ./
 RUN npm ci  --ignore-scripts
 
 # Copy Angular workspace files explicitly
-COPY angular.json tsconfig.json tsconfig.app.json tsconfig.spec.json ./
-COPY package.json package-lock.json ./
-COPY browserslist ./
+COPY angular.json ./
+COPY tsconfig.json tsconfig.app.json tsconfig.spec.json ./
 COPY .editorconfig ./
 
 # Copy application source
