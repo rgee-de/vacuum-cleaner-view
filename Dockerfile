@@ -28,20 +28,11 @@ RUN npm run build
 # Stage 2: Serve the Angular application with Nginx
 FROM nginx:stable-alpine AS runtime
 
-# Create non-root user for Nginx
-# Prepare directory for Angular static files
-RUN adduser -D -g '' nginxuser \
-    && mkdir -p /usr/share/nginx/html \
-    && chown -R nginxuser:nginxuser /usr/share/nginx/html
-
 # Copy built Angular files
 COPY --from=builder /app/dist/vacuum-cleaner-view/browser /usr/share/nginx/html
 
 # Copy custom Nginx configuration
 COPY nginx.conf /etc/nginx/nginx.conf
-
-# Switch to non-root user
-USER nginxuser
 
 # Expose port 80
 EXPOSE 80
